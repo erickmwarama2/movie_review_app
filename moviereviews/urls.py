@@ -18,12 +18,14 @@ from django.urls import path
 from movie import views as movieViews
 from django.conf.urls.static import static
 from django.conf import settings
+from django.urls import path, include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', movieViews.home, name='home'),
     path('about/', movieViews.about),
-    path('signup/', movieViews.signup, name='signup')
+    path('signup/', movieViews.signup, name='signup'),
+    path('news/', include('news.urls'))
     # path('about2/', movieViews.about2)
 ]
 
