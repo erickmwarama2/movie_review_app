@@ -9,6 +9,15 @@ from .models import Movie
 def about(request):
     return HttpResponse('<h3> About Us </h3>')
 
+from .serializers import MovieSerializer
+from rest_framework.permissions import IsAuthenticated
+from rest_framework.viewsets import ModelViewSet
+from .models import Movie
+
+class MovieViewSet(ModelViewSet):
+    queryset = Movie.objects.all().order_by('title')
+    serializer_class = MovieSerializer
+    # permission_classes = [IsAuthenticated]
 
 def home(request):
     searchTerm = request.GET.get('searchMovie')
